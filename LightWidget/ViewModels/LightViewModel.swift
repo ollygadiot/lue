@@ -19,16 +19,26 @@ final class LightViewModel {
     var activeSceneId: String?
 
     var isLightsExpanded = false
+    var isScenesExpanded = false
+
+    var availableRooms: [HueRoom] = []
+    var isLoadingRooms = false
 
     // MARK: - Configuration
 
     private static let bridgeIPKey = "bridgeIP"
     private static let apiKeyKey = "apiKey"
-    private static let werkkamerRoomId = "e6c47b56-b721-40f2-a545-8e5b3effb047"
-    private static let werkkamerGroupedLightId = "183481fa-4e2a-4d0f-81c5-5f893eab968b"
+    private static let configKey = "roomConfig"
 
+    private var configuration: RoomConfiguration?
     private var service: HueBridgeService?
     private var sseTask: Task<Void, Never>?
+    private let roomBrightnessDebouncer = Debouncer()
+    private var lightBrightnessDebouncers: [String: Debouncer] = [:]
+
+    var isRoomSelected: Bool { configuration != nil }
+
+    var roomName: String { configuration?.roomName ?? "" }
 
     // MARK: - Lifecycle
 
@@ -41,6 +51,9 @@ final class LightViewModel {
 
         isConfigured = true
         service = HueBridgeService(bridgeIP: bridgeIP, apiKey: apiKey)
+        configuration = KeychainService.loadCodable(RoomConfiguration.self, key: Self.configKey)
+
+        guard configuration != nil else { return }
         Task { await loadInitialState() }
         startSSE()
     }
@@ -55,21 +68,69 @@ final class LightViewModel {
         sseTask?.cancel()
     }
 
+    // MARK: - Room Selection
+
+    func loadAvailableRooms() {
+        guard let service else { return }
+        isLoadingRooms = true
+        Task {
+            do {
+                availableRooms = try await service.fetchRooms()
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            isLoadingRooms = false
+        }
+    }
+
+    func selectRoom(_ room: HueRoom) {
+        guard let groupedLightRef = room.services.first(where: { $0.rtype == "grouped_light" }) else {
+            errorMessage = "Room has no grouped light"
+            return
+        }
+
+        let config = RoomConfiguration(
+            roomId: room.id,
+            groupedLightId: groupedLightRef.rid,
+            roomName: room.metadata.name
+        )
+        try? KeychainService.saveCodable(config, key: Self.configKey)
+        configuration = config
+
+        lights = []
+        scenes = []
+        availableRooms = []
+
+        Task { await loadInitialState() }
+        startSSE()
+    }
+
+    func resetRoomSelection() {
+        sseTask?.cancel()
+        KeychainService.delete(key: Self.configKey)
+        configuration = nil
+        lights = []
+        scenes = []
+        roomOn = false
+        roomBrightness = 0
+        activeSceneId = nil
+    }
+
     // MARK: - Data Loading
 
     private func loadInitialState() async {
-        guard let service else { return }
+        guard let service, let config = configuration else { return }
         isLoading = true
         errorMessage = nil
 
         do {
             let allLights = try await service.fetchLights()
             let allScenes = try await service.fetchScenes()
-            let grouped = try await service.fetchGroupedLight(id: Self.werkkamerGroupedLightId)
+            let grouped = try await service.fetchGroupedLight(id: config.groupedLightId)
 
-            let roomLightIds = try await werkkamerLightIds(service: service)
+            let roomLightIds = try await roomLightIds(roomId: config.roomId, service: service)
             lights = allLights.filter { roomLightIds.contains($0.id) }
-            scenes = allScenes.filter { $0.group.rid == Self.werkkamerRoomId }
+            scenes = allScenes.filter { $0.group.rid == config.roomId }
 
             roomOn = grouped.on.on
             roomBrightness = grouped.dimming?.brightness ?? 0
@@ -82,13 +143,13 @@ final class LightViewModel {
         isLoading = false
     }
 
-    private func werkkamerLightIds(service: HueBridgeService) async throws -> Set<String> {
+    private func roomLightIds(roomId: String, service: HueBridgeService) async throws -> Set<String> {
         let rooms = try await service.fetchRooms()
-        guard let werkkamer = rooms.first(where: { $0.id == Self.werkkamerRoomId }) else {
+        guard let room = rooms.first(where: { $0.id == roomId }) else {
             return []
         }
 
-        let deviceIds = Set(werkkamer.children.map(\.rid))
+        let deviceIds = Set(room.children.map(\.rid))
         let allLights = try await service.fetchLights()
         return Set(allLights.filter { deviceIds.contains($0.owner.rid) }.map(\.id))
     }
@@ -96,20 +157,20 @@ final class LightViewModel {
     // MARK: - Room Controls
 
     func toggleRoom() {
+        guard let groupId = configuration?.groupedLightId else { return }
         let newState = !roomOn
         roomOn = newState
         let service = self.service
-        let groupId = Self.werkkamerGroupedLightId
         Task.detached {
             try? await service?.setGroupedLightOn(id: groupId, on: newState)
         }
     }
 
     func setRoomBrightness(_ brightness: Double) {
+        guard let groupId = configuration?.groupedLightId else { return }
         roomBrightness = brightness
         let service = self.service
-        let groupId = Self.werkkamerGroupedLightId
-        Task.detached {
+        roomBrightnessDebouncer.call {
             try? await service?.setGroupedLightBrightness(id: groupId, brightness: brightness)
         }
     }
@@ -130,7 +191,12 @@ final class LightViewModel {
         updateLightBrightness(id: light.id, brightness: brightness)
         let service = self.service
         let lightId = light.id
-        Task.detached {
+        let debouncer = lightBrightnessDebouncers[lightId] ?? {
+            let d = Debouncer()
+            lightBrightnessDebouncers[lightId] = d
+            return d
+        }()
+        debouncer.call {
             try? await service?.setLightBrightness(id: lightId, brightness: brightness)
         }
     }
@@ -141,10 +207,8 @@ final class LightViewModel {
         activeSceneId = scene.id
         let service = self.service
         let sceneId = scene.id
-        Task {
+        Task.detached {
             try? await service?.activateScene(id: sceneId)
-            try? await Task.sleep(for: .milliseconds(500))
-            await loadInitialState()
         }
     }
 
@@ -177,7 +241,7 @@ final class LightViewModel {
                 if let dimming = event.dimming {
                     updateLightBrightness(id: event.id, brightness: dimming.brightness)
                 }
-            case "grouped_light" where event.id == Self.werkkamerGroupedLightId:
+            case "grouped_light" where event.id == configuration?.groupedLightId:
                 if let on = event.on {
                     roomOn = on.on
                 }
@@ -235,11 +299,6 @@ final class LightViewModel {
     }
 
     var sortedScenes: [HueScene] {
-        let order = ["Bright", "Concentrate", "Read", "Relax", "Energize", "Nightlight"]
-        return scenes.sorted { a, b in
-            let ai = order.firstIndex(of: a.metadata.name) ?? order.count
-            let bi = order.firstIndex(of: b.metadata.name) ?? order.count
-            return ai < bi
-        }
+        scenes.sorted { $0.metadata.name < $1.metadata.name }
     }
 }

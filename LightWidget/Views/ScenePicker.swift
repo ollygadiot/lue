@@ -8,12 +8,7 @@ struct ScenePicker: View {
     ]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Scenes")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-
-            LazyVGrid(columns: columns, spacing: 8) {
+        LazyVGrid(columns: columns, spacing: 8) {
                 ForEach(viewModel.sortedScenes) { scene in
                     SceneButton(
                         name: scene.metadata.name,
@@ -22,7 +17,6 @@ struct ScenePicker: View {
                         viewModel.activateScene(scene)
                     }
                 }
-            }
         }
     }
 }

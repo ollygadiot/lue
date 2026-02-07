@@ -4,8 +4,9 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 ## Features
 
-- **Room control** — Toggle all Werkkamer lights on/off with a single switch, adjust room brightness
-- **Scenes** — Activate Hue scenes (Bright, Concentrate, Read, Relax, Energize, Nightlight)
+- **Room selection** — Pick any room from your Hue Bridge on first launch
+- **Room control** — Toggle all lights on/off with a single switch, adjust room brightness
+- **Scenes** — Activate Hue scenes with one click
 - **Individual lights** — Expand to control each light separately with per-light brightness sliders
 - **Real-time updates** — SSE event streaming keeps the UI in sync when lights change from other apps or switches
 - **Menu bar native** — Lives in the menu bar with a lightbulb icon that reflects on/off state
@@ -31,7 +32,11 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 4. Press the **link button** on your Hue Bridge, then click **Pair** in the setup view
 
-5. That's it — your API key is stored in Keychain for future launches
+5. Select the **room** you want to control
+
+6. That's it — your configuration is stored in Keychain for future launches
+
+Use the gear icon at the bottom of the popover to switch to a different room.
 
 ## Architecture
 
@@ -44,12 +49,13 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 | Layer | File | Role |
 |-------|------|------|
-| App | `LightWidgetApp.swift` | `MenuBarExtra` entry point |
-| Views | `Views/` | Popover UI — room header, scene picker, light rows, setup |
+| App | `LightWidgetApp.swift` | `MenuBarExtra` entry point, three-state routing |
+| Views | `Views/` | Popover UI — room selection, room header, scene picker, light rows, setup |
 | ViewModel | `LightViewModel.swift` | `@MainActor @Observable` — bridges API to UI |
 | Service | `HueBridgeService.swift` | Actor — REST calls + SSE streaming |
-| Keychain | `KeychainService.swift` | Stores bridge IP and API key |
-| Certs | `TrustAllCertsDelegate.swift` | Accepts the bridge's self-signed certificate |
+| Keychain | `KeychainService.swift` | Stores bridge IP, API key, and room configuration |
+| Models | `Models/` | Hue API response models and room configuration |
+| Utilities | `Utilities/` | Certificate trust delegate, debouncer |
 
 ## Project generation
 

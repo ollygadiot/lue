@@ -53,6 +53,18 @@ enum KeychainService {
         ]
         SecItemDelete(query as CFDictionary)
     }
+
+    static func saveCodable<T: Encodable>(_ value: T, key: String) throws {
+        let data = try JSONEncoder().encode(value)
+        guard let string = String(data: data, encoding: .utf8) else { return }
+        try save(key: key, value: string)
+    }
+
+    static func loadCodable<T: Decodable>(_ type: T.Type, key: String) -> T? {
+        guard let string = load(key: key),
+              let data = string.data(using: .utf8) else { return nil }
+        return try? JSONDecoder().decode(type, from: data)
+    }
 }
 
 enum KeychainError: LocalizedError {

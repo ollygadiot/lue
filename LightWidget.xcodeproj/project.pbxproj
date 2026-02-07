@@ -8,16 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		16E80D4070A553CCCA061A35 /* LightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58619C3162AF61453FDB1ECC /* LightViewModel.swift */; };
+		2F75004083B74DAE893FAA1B /* RoomSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91C598AD1CDA23EBC103172 /* RoomSelectionView.swift */; };
 		3640FE5D05DA5D517D76875C /* TrustAllCertsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */; };
+		389900AD830A6CEA1054397E /* WidgetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5383816F0A94DF942DC0197 /* WidgetConfiguration.swift */; };
 		3BB3FB4357281ECCFA4DA251 /* HueEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ACF4AA9383BE836C696335 /* HueEvent.swift */; };
 		4A85EB786711418CC13094A5 /* HueLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE708CF595E7269E207692DC /* HueLight.swift */; };
 		533528113F244EE63CE85061 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8015ECBF0DA5DA078E3C80E5 /* KeychainService.swift */; };
 		5B896B6184F1ED66735C324E /* LightWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988FDC671AC62927EE007A6D /* LightWidgetApp.swift */; };
 		660A56534BC3AC00F966B083 /* LightPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBAF46A5454C52069B51609 /* LightPopoverView.swift */; };
+		68E565BBE81C3C3EB84BEE71 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DAE019176C5E5466ADC81E /* CollapsibleSection.swift */; };
 		73C35A0CC9106CA48D1D20BE /* HueBridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448BA7C53A8E3753A7C35A08 /* HueBridgeService.swift */; };
 		B2AF18289189AA6AEB309101 /* LightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9481AF3AA3F9690674FA69 /* LightRowView.swift */; };
 		B7E4E84C46F8263A51BF9658 /* ScenePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */; };
 		D16CD9D5139D0D38F3F7B57B /* RoomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071255D34FB2931CA998525 /* RoomHeaderView.swift */; };
+		F00CDFDCC2A1D9DED56CF693 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE3104F010B1205E8628D54 /* Debouncer.swift */; };
 		F9624D07D166AFB8410B1212 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D4D82381D8A63561457D4 /* SetupView.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +30,7 @@
 		1E8D4D82381D8A63561457D4 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		2CBAF46A5454C52069B51609 /* LightPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPopoverView.swift; sourceTree = "<group>"; };
 		448BA7C53A8E3753A7C35A08 /* HueBridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridgeService.swift; sourceTree = "<group>"; };
+		4BE3104F010B1205E8628D54 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		58619C3162AF61453FDB1ECC /* LightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightViewModel.swift; sourceTree = "<group>"; };
 		5CAA4979FFFD71431D3D36E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePicker.swift; sourceTree = "<group>"; };
@@ -33,7 +38,10 @@
 		8071255D34FB2931CA998525 /* RoomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHeaderView.swift; sourceTree = "<group>"; };
 		988FDC671AC62927EE007A6D /* LightWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWidgetApp.swift; sourceTree = "<group>"; };
 		A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustAllCertsDelegate.swift; sourceTree = "<group>"; };
+		A5383816F0A94DF942DC0197 /* WidgetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfiguration.swift; sourceTree = "<group>"; };
+		A7DAE019176C5E5466ADC81E /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
 		AA487237DCE5E2216EBCD481 /* LightWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightWidget.entitlements; sourceTree = "<group>"; };
+		B91C598AD1CDA23EBC103172 /* RoomSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSelectionView.swift; sourceTree = "<group>"; };
 		CDB7FD079985E2D2ED0B578A /* LightWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9481AF3AA3F9690674FA69 /* LightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRowView.swift; sourceTree = "<group>"; };
 		DE708CF595E7269E207692DC /* HueLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueLight.swift; sourceTree = "<group>"; };
@@ -59,9 +67,11 @@
 		2B1C4C7EFC0F3E00D25B3AA6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7DAE019176C5E5466ADC81E /* CollapsibleSection.swift */,
 				2CBAF46A5454C52069B51609 /* LightPopoverView.swift */,
 				CE9481AF3AA3F9690674FA69 /* LightRowView.swift */,
 				8071255D34FB2931CA998525 /* RoomHeaderView.swift */,
+				B91C598AD1CDA23EBC103172 /* RoomSelectionView.swift */,
 				6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */,
 				1E8D4D82381D8A63561457D4 /* SetupView.swift */,
 			);
@@ -80,6 +90,7 @@
 		57F4E0DA96E8454009AB4ADF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4BE3104F010B1205E8628D54 /* Debouncer.swift */,
 				A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */,
 			);
 			path = Utilities;
@@ -105,6 +116,7 @@
 			children = (
 				17ACF4AA9383BE836C696335 /* HueEvent.swift */,
 				DE708CF595E7269E207692DC /* HueLight.swift */,
+				A5383816F0A94DF942DC0197 /* WidgetConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +187,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E565BBE81C3C3EB84BEE71 /* CollapsibleSection.swift in Sources */,
+				F00CDFDCC2A1D9DED56CF693 /* Debouncer.swift in Sources */,
 				73C35A0CC9106CA48D1D20BE /* HueBridgeService.swift in Sources */,
 				3BB3FB4357281ECCFA4DA251 /* HueEvent.swift in Sources */,
 				4A85EB786711418CC13094A5 /* HueLight.swift in Sources */,
@@ -184,9 +198,11 @@
 				16E80D4070A553CCCA061A35 /* LightViewModel.swift in Sources */,
 				5B896B6184F1ED66735C324E /* LightWidgetApp.swift in Sources */,
 				D16CD9D5139D0D38F3F7B57B /* RoomHeaderView.swift in Sources */,
+				2F75004083B74DAE893FAA1B /* RoomSelectionView.swift in Sources */,
 				B7E4E84C46F8263A51BF9658 /* ScenePicker.swift in Sources */,
 				F9624D07D166AFB8410B1212 /* SetupView.swift in Sources */,
 				3640FE5D05DA5D517D76875C /* TrustAllCertsDelegate.swift in Sources */,
+				389900AD830A6CEA1054397E /* WidgetConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

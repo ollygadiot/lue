@@ -7,10 +7,12 @@ struct LightWidgetApp: App {
     var body: some Scene {
         MenuBarExtra {
             Group {
-                if viewModel.isConfigured {
-                    LightPopoverView(viewModel: viewModel)
-                } else {
+                if !viewModel.isConfigured {
                     SetupView(viewModel: viewModel)
+                } else if !viewModel.isRoomSelected {
+                    RoomSelectionView(viewModel: viewModel)
+                } else {
+                    LightPopoverView(viewModel: viewModel)
                 }
             }
             .task {

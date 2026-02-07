@@ -25,29 +25,52 @@ struct LightPopoverView: View {
             } else {
                 RoomHeaderView(viewModel: viewModel)
 
-                if viewModel.roomOn {
-                    Divider()
-                    ScenePicker(viewModel: viewModel)
-                }
-
                 Divider()
 
-                DisclosureGroup(
-                    isExpanded: Binding(
-                        get: { viewModel.isLightsExpanded },
-                        set: { viewModel.isLightsExpanded = $0 }
-                    )
+                CollapsibleSection(
+                    title: "Individual lights",
+                    isExpanded: $viewModel.isLightsExpanded
                 ) {
                     VStack(spacing: 6) {
                         ForEach(viewModel.sortedLights) { light in
                             LightRowView(light: light, viewModel: viewModel)
                         }
                     }
-                    .padding(.top, 4)
-                } label: {
-                    Text("Individual lights")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                }
+
+                if viewModel.roomOn {
+                    Divider()
+
+                    CollapsibleSection(
+                        title: "Scenes",
+                        isExpanded: $viewModel.isScenesExpanded
+                    ) {
+                        ScenePicker(viewModel: viewModel)
+                    }
+                }
+
+                Divider()
+
+                HStack {
+                    Button {
+                        NSApplication.shared.terminate(nil)
+                    } label: {
+                        Image(systemName: "power")
+                            .foregroundStyle(.secondary)
+                            .font(.caption)
+                    }
+                    .buttonStyle(.plain)
+
+                    Spacer()
+
+                    Button {
+                        viewModel.resetRoomSelection()
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.secondary)
+                            .font(.caption)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }

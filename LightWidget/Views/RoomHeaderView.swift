@@ -6,7 +6,7 @@ struct RoomHeaderView: View {
     var body: some View {
         VStack(spacing: 12) {
             HStack {
-                Text("Werkkamer")
+                Text(viewModel.roomName)
                     .font(.headline)
 
                 Spacer()
