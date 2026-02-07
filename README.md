@@ -6,9 +6,10 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 - **Room selection** — Pick any room from your Hue Bridge on first launch
 - **Room control** — Toggle all lights on/off with a single switch, adjust room brightness
-- **Scenes** — Activate Hue scenes with one click
 - **Individual lights** — Expand to control each light separately with per-light brightness sliders
+- **Scenes** — Expand to activate Hue scenes with one click
 - **Real-time updates** — SSE event streaming keeps the UI in sync when lights change from other apps or switches
+- **Debounced sliders** — Brightness changes update instantly in the UI, API calls are batched after dragging stops
 - **Menu bar native** — Lives in the menu bar with a lightbulb icon that reflects on/off state
 
 ## Requirements
@@ -36,7 +37,7 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 6. That's it — your configuration is stored in Keychain for future launches
 
-Use the gear icon at the bottom of the popover to switch to a different room.
+Use the gear icon (bottom-right) to switch rooms, or the power icon (bottom-left) to quit.
 
 ## Architecture
 
