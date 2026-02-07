@@ -160,6 +160,9 @@ final class LightViewModel {
         guard let groupId = configuration?.groupedLightId else { return }
         let newState = !roomOn
         roomOn = newState
+        for light in lights {
+            updateLightState(id: light.id, on: newState)
+        }
         let service = self.service
         Task.detached {
             try? await service?.setGroupedLightOn(id: groupId, on: newState)
