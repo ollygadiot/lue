@@ -4,6 +4,7 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 ## Features
 
+- **Auto-discovery** — Automatically finds your Hue Bridge on the local network
 - **Room selection** — Pick any room from your Hue Bridge on first launch
 - **Room control** — Toggle all lights on/off with a single switch, adjust room brightness
 - **Individual lights** — Expand to control each light separately with per-light brightness sliders
@@ -29,9 +30,9 @@ A lightweight macOS menu bar app for controlling Philips Hue lights. Built with 
 
 2. Build and run (⌘R)
 
-3. Click the lightbulb icon in the menu bar
+3. Click the lightbulb icon in the menu bar — your bridge IP is discovered automatically
 
-4. Press the **link button** on your Hue Bridge, then click **Pair** in the setup view
+4. Press the **link button** on your Hue Bridge, then click **Pair**
 
 5. Select the **room** you want to control
 

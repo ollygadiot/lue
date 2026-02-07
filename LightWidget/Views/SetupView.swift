@@ -3,7 +3,8 @@ import SwiftUI
 struct SetupView: View {
     @Bindable var viewModel: LightViewModel
 
-    @State private var bridgeIP = "192.168.1.142"
+    @State private var bridgeIP = ""
+    @State private var isDiscovering = true
     @State private var isPairing = false
     @State private var pairError: String?
     @State private var apiKey: String?
@@ -17,8 +18,23 @@ struct SetupView: View {
             Text("Connect to Hue Bridge")
                 .font(.headline)
 
-            TextField("Bridge IP", text: $bridgeIP)
-                .textFieldStyle(.roundedBorder)
+            if isDiscovering {
+                ProgressView("Searching for bridge...")
+                    .font(.caption)
+            } else {
+                HStack(spacing: 8) {
+                    TextField("Bridge IP", text: $bridgeIP)
+                        .textFieldStyle(.roundedBorder)
+
+                    Button {
+                        Task { await discover() }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .buttonStyle(.borderless)
+                    .disabled(isDiscovering)
+                }
+            }
 
             if let apiKey {
                 VStack(spacing: 8) {
@@ -33,7 +49,7 @@ struct SetupView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
-            } else {
+            } else if !isDiscovering {
                 VStack(spacing: 8) {
                     Text("Press the link button on your Hue Bridge, then tap Pair below.")
                         .font(.caption)
@@ -56,6 +72,34 @@ struct SetupView: View {
         }
         .padding(20)
         .frame(width: 280)
+        .task {
+            await discover()
+        }
+    }
+
+    private func discover() async {
+        isDiscovering = true
+        pairError = nil
+
+        do {
+            let (data, _) = try await URLSession.shared.data(
+                from: URL(string: "https://discovery.meethue.com")!
+            )
+
+            struct DiscoveryResult: Decodable {
+                let id: String
+                let internalipaddress: String
+            }
+
+            let results = try JSONDecoder().decode([DiscoveryResult].self, from: data)
+            if let first = results.first {
+                bridgeIP = first.internalipaddress
+            }
+        } catch {
+            pairError = "Discovery failed — enter IP manually"
+        }
+
+        isDiscovering = false
     }
 
     private func pair() async {
