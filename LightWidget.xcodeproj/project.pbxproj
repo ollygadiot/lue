@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		16E80D4070A553CCCA061A35 /* LightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58619C3162AF61453FDB1ECC /* LightViewModel.swift */; };
+		3640FE5D05DA5D517D76875C /* TrustAllCertsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */; };
+		3BB3FB4357281ECCFA4DA251 /* HueEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ACF4AA9383BE836C696335 /* HueEvent.swift */; };
+		4A85EB786711418CC13094A5 /* HueLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE708CF595E7269E207692DC /* HueLight.swift */; };
+		533528113F244EE63CE85061 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8015ECBF0DA5DA078E3C80E5 /* KeychainService.swift */; };
+		5B896B6184F1ED66735C324E /* LightWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988FDC671AC62927EE007A6D /* LightWidgetApp.swift */; };
+		660A56534BC3AC00F966B083 /* LightPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBAF46A5454C52069B51609 /* LightPopoverView.swift */; };
+		73C35A0CC9106CA48D1D20BE /* HueBridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448BA7C53A8E3753A7C35A08 /* HueBridgeService.swift */; };
+		B2AF18289189AA6AEB309101 /* LightRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9481AF3AA3F9690674FA69 /* LightRowView.swift */; };
+		B7E4E84C46F8263A51BF9658 /* ScenePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */; };
+		D16CD9D5139D0D38F3F7B57B /* RoomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071255D34FB2931CA998525 /* RoomHeaderView.swift */; };
+		F9624D07D166AFB8410B1212 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D4D82381D8A63561457D4 /* SetupView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		17ACF4AA9383BE836C696335 /* HueEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueEvent.swift; sourceTree = "<group>"; };
+		1E8D4D82381D8A63561457D4 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		2CBAF46A5454C52069B51609 /* LightPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightPopoverView.swift; sourceTree = "<group>"; };
+		448BA7C53A8E3753A7C35A08 /* HueBridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueBridgeService.swift; sourceTree = "<group>"; };
+		58619C3162AF61453FDB1ECC /* LightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightViewModel.swift; sourceTree = "<group>"; };
+		5CAA4979FFFD71431D3D36E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePicker.swift; sourceTree = "<group>"; };
+		8015ECBF0DA5DA078E3C80E5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		8071255D34FB2931CA998525 /* RoomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomHeaderView.swift; sourceTree = "<group>"; };
+		988FDC671AC62927EE007A6D /* LightWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWidgetApp.swift; sourceTree = "<group>"; };
+		A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustAllCertsDelegate.swift; sourceTree = "<group>"; };
+		AA487237DCE5E2216EBCD481 /* LightWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightWidget.entitlements; sourceTree = "<group>"; };
+		CDB7FD079985E2D2ED0B578A /* LightWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE9481AF3AA3F9690674FA69 /* LightRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRowView.swift; sourceTree = "<group>"; };
+		DE708CF595E7269E207692DC /* HueLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueLight.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1057D4F07BA44213D316F57E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDB7FD079985E2D2ED0B578A /* LightWidget.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		115F8D4336BBE0DD2F129DC5 = {
+			isa = PBXGroup;
+			children = (
+				5C6A555200BC5664BEF555E3 /* LightWidget */,
+				1057D4F07BA44213D316F57E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B1C4C7EFC0F3E00D25B3AA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CBAF46A5454C52069B51609 /* LightPopoverView.swift */,
+				CE9481AF3AA3F9690674FA69 /* LightRowView.swift */,
+				8071255D34FB2931CA998525 /* RoomHeaderView.swift */,
+				6E5DC567813CB4A0C0D618B6 /* ScenePicker.swift */,
+				1E8D4D82381D8A63561457D4 /* SetupView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3CD19CA923D679F8043296CE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				448BA7C53A8E3753A7C35A08 /* HueBridgeService.swift */,
+				8015ECBF0DA5DA078E3C80E5 /* KeychainService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		57F4E0DA96E8454009AB4ADF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A3EA614A762AC05F0D0E1216 /* TrustAllCertsDelegate.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5C6A555200BC5664BEF555E3 /* LightWidget */ = {
+			isa = PBXGroup;
+			children = (
+				5CAA4979FFFD71431D3D36E6 /* Info.plist */,
+				AA487237DCE5E2216EBCD481 /* LightWidget.entitlements */,
+				988FDC671AC62927EE007A6D /* LightWidgetApp.swift */,
+				83A2BE71539C2A39172E92E3 /* Models */,
+				3CD19CA923D679F8043296CE /* Services */,
+				57F4E0DA96E8454009AB4ADF /* Utilities */,
+				C5A54429799D9667B3CCA9A4 /* ViewModels */,
+				2B1C4C7EFC0F3E00D25B3AA6 /* Views */,
+			);
+			path = LightWidget;
+			sourceTree = "<group>";
+		};
+		83A2BE71539C2A39172E92E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				17ACF4AA9383BE836C696335 /* HueEvent.swift */,
+				DE708CF595E7269E207692DC /* HueLight.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C5A54429799D9667B3CCA9A4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				58619C3162AF61453FDB1ECC /* LightViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		828031DFE04389548D02BD6A /* LightWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80159A20005730BB03900CAB /* Build configuration list for PBXNativeTarget "LightWidget" */;
+			buildPhases = (
+				B83961593C60365A26858936 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LightWidget;
+			packageProductDependencies = (
+			);
+			productName = LightWidget;
+			productReference = CDB7FD079985E2D2ED0B578A /* LightWidget.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC3FA6A77FBAD0F4211D3DE4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					828031DFE04389548D02BD6A = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B3FA9863883A4CA365128FEF /* Build configuration list for PBXProject "LightWidget" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 115F8D4336BBE0DD2F129DC5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				828031DFE04389548D02BD6A /* LightWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B83961593C60365A26858936 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73C35A0CC9106CA48D1D20BE /* HueBridgeService.swift in Sources */,
+				3BB3FB4357281ECCFA4DA251 /* HueEvent.swift in Sources */,
+				4A85EB786711418CC13094A5 /* HueLight.swift in Sources */,
+				533528113F244EE63CE85061 /* KeychainService.swift in Sources */,
+				660A56534BC3AC00F966B083 /* LightPopoverView.swift in Sources */,
+				B2AF18289189AA6AEB309101 /* LightRowView.swift in Sources */,
+				16E80D4070A553CCCA061A35 /* LightViewModel.swift in Sources */,
+				5B896B6184F1ED66735C324E /* LightWidgetApp.swift in Sources */,
+				D16CD9D5139D0D38F3F7B57B /* RoomHeaderView.swift in Sources */,
+				B7E4E84C46F8263A51BF9658 /* ScenePicker.swift in Sources */,
+				F9624D07D166AFB8410B1212 /* SetupView.swift in Sources */,
+				3640FE5D05DA5D517D76875C /* TrustAllCertsDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		04933BB763BDE91EB4884E37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LightWidget/LightWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LightWidget/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ollygadiot.LightWidget;
+				PRODUCT_NAME = LightWidget;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		2974C9029C133D30B7A589EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LightWidget/LightWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LightWidget/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ollygadiot.LightWidget;
+				PRODUCT_NAME = LightWidget;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		C9C95E229A8213627A5941BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E16475FF742D9C9F223B9C50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80159A20005730BB03900CAB /* Build configuration list for PBXNativeTarget "LightWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2974C9029C133D30B7A589EE /* Debug */,
+				04933BB763BDE91EB4884E37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B3FA9863883A4CA365128FEF /* Build configuration list for PBXProject "LightWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9C95E229A8213627A5941BB /* Debug */,
+				E16475FF742D9C9F223B9C50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC3FA6A77FBAD0F4211D3DE4 /* Project object */;
+}
