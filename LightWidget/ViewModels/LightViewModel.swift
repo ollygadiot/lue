@@ -33,6 +33,7 @@ final class LightViewModel {
     private var configuration: RoomConfiguration?
     private var service: HueBridgeService?
     private var sseTask: Task<Void, Never>?
+    private var refreshBridgeTask: Task<Void, Never>?
     private let roomBrightnessDebouncer = Debouncer()
     private var lightBrightnessDebouncers: [String: Debouncer] = [:]
 
@@ -53,6 +54,8 @@ final class LightViewModel {
         service = HueBridgeService(bridgeIP: bridgeIP, apiKey: apiKey)
         configuration = KeychainService.loadCodable(RoomConfiguration.self, key: Self.configKey)
 
+        refreshBridgeIPIfNeeded(savedBridgeIP: bridgeIP, apiKey: apiKey)
+
         guard configuration != nil else { return }
         Task { await loadInitialState() }
         startSSE()
@@ -66,6 +69,7 @@ final class LightViewModel {
 
     func stop() {
         sseTask?.cancel()
+        refreshBridgeTask?.cancel()
     }
 
     // MARK: - Room Selection
@@ -119,6 +123,10 @@ final class LightViewModel {
     // MARK: - Data Loading
 
     private func loadInitialState() async {
+        await loadInitialState(allowBridgeRefresh: true)
+    }
+
+    private func loadInitialState(allowBridgeRefresh: Bool) async {
         guard let service, let config = configuration else { return }
         isLoading = true
         errorMessage = nil
@@ -137,10 +145,51 @@ final class LightViewModel {
 
             activeSceneId = scenes.first { $0.status?.active == "active" }?.id
         } catch {
+            if allowBridgeRefresh, await refreshBridgeIPAfterConnectionFailure() {
+                await loadInitialState(allowBridgeRefresh: false)
+                return
+            }
             errorMessage = error.localizedDescription
         }
 
         isLoading = false
+    }
+
+    private func refreshBridgeIPIfNeeded(savedBridgeIP: String, apiKey: String) {
+        refreshBridgeTask?.cancel()
+        refreshBridgeTask = Task { [weak self] in
+            do {
+                guard let discoveredBridgeIP = try await HueBridgeDiscoveryService.discoverBridgeIP(apiKey: apiKey),
+                      discoveredBridgeIP != savedBridgeIP else {
+                    return
+                }
+
+                await self?.useBridgeIP(discoveredBridgeIP, apiKey: apiKey)
+            } catch {
+                return
+            }
+        }
+    }
+
+    private func refreshBridgeIPAfterConnectionFailure() async -> Bool {
+        guard let apiKey = KeychainService.load(key: Self.apiKeyKey),
+              let discoveredBridgeIP = try? await HueBridgeDiscoveryService.discoverBridgeIP(apiKey: apiKey) else {
+            return false
+        }
+
+        try? KeychainService.save(key: Self.bridgeIPKey, value: discoveredBridgeIP)
+        service = HueBridgeService(bridgeIP: discoveredBridgeIP, apiKey: apiKey)
+        return true
+    }
+
+    private func useBridgeIP(_ bridgeIP: String, apiKey: String) async {
+        try? KeychainService.save(key: Self.bridgeIPKey, value: bridgeIP)
+        service = HueBridgeService(bridgeIP: bridgeIP, apiKey: apiKey)
+
+        if configuration != nil {
+            await loadInitialState(allowBridgeRefresh: false)
+            startSSE()
+        }
     }
 
     private func roomLightIds(roomId: String, service: HueBridgeService) async throws -> Set<String> {

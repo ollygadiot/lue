@@ -82,18 +82,8 @@ struct SetupView: View {
         pairError = nil
 
         do {
-            let (data, _) = try await URLSession.shared.data(
-                from: URL(string: "https://discovery.meethue.com")!
-            )
-
-            struct DiscoveryResult: Decodable {
-                let id: String
-                let internalipaddress: String
-            }
-
-            let results = try JSONDecoder().decode([DiscoveryResult].self, from: data)
-            if let first = results.first {
-                bridgeIP = first.internalipaddress
+            if let discoveredBridgeIP = try await HueBridgeDiscoveryService.discoverBridgeIP() {
+                bridgeIP = discoveredBridgeIP
             }
         } catch {
             pairError = "Discovery failed — enter IP manually"
